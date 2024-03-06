@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TodoList {
@@ -47,9 +48,7 @@ public class TodoList {
      * @return the name of the task with the current highest urgency (a String).
      */
     public String mostUrgent() {
-
         return null;
-
     }
 
     /**
@@ -57,8 +56,12 @@ public class TodoList {
      * @return the average urgency across all tasks (a double).
      */
     public double averageUrgency() {
-
-        return 0.0;
+        int allUrgencies = 0;
+        for (Task task: tasks) {
+            allUrgencies+=task.getUrgency();
+        }
+        int size = tasks.size();
+        return (allUrgencies*1.0/size);
 
     }
 
@@ -77,9 +80,12 @@ public class TodoList {
      * BONUS Challenge:  Sort your to-do list in descending order of urgency
      */
     public String toString() {
-
-        return "";
-        
+        StringBuilder str = new StringBuilder();
+        str.append("To-do List of "+owner+"\n");
+        for (Task task: tasks) {
+            str.append(task.getName()+"\t"+task.getUrgency()+"\n");
+        }
+        return str.toString();
     }
 
 }
